@@ -11,194 +11,140 @@ st.set_page_config(
 )
 
 # ==============================
-# لوحة الألوان
+# لوحة الألوان — Academic AI Light
 # ==============================
-BG = "#050816"
-BG2 = "#0A1030"
-CYAN = "#29E7F2"
-BLUE = "#5B8CFF"
-PURPLE = "#9B6BFF"
-PINK = "#FF72C7"
-YELLOW = "#FFD166"
-GREEN = "#58E6A9"
-WHITE = "#F8FAFF"
-MUTED = "#C8D0EE"
-CARD = "rgba(255,255,255,.055)"
+BG = "#F4F8FE"
+BG2 = "#EEF4FD"
+CYAN = "#06B6D4"
+BLUE = "#2563EB"
+PURPLE = "#7C3AED"
+PINK = "#DB2777"
+YELLOW = "#D97706"
+GREEN = "#059669"
+WHITE = "#14213D"
+MUTED = "#53667D"
+CARD = "#FFFFFF"
 
 # ==============================
-# CSS عام + RTL + تصميم عصري
+# CSS عام + RTL + Academic AI Light
 # ==============================
 st.markdown(
     f"""
     <style>
     html {{ scroll-behavior: smooth; }}
-    html, body, [data-testid="stAppViewContainer"], [data-testid="stSidebar"] {{
-        direction: rtl;
-        text-align: right;
-        font-family: Tahoma, "Segoe UI", Arial, sans-serif;
-    }}
-    [data-testid="stAppViewContainer"] {{
-        flex-direction: row-reverse !important;
-        background:
-          radial-gradient(circle at 8% 10%, rgba(41,231,242,.14), transparent 26%),
-          radial-gradient(circle at 92% 6%, rgba(155,107,255,.20), transparent 29%),
-          radial-gradient(circle at 76% 88%, rgba(255,114,199,.12), transparent 26%),
-          linear-gradient(155deg, {BG} 0%, {BG2} 54%, #07091C 100%);
+    html, body, [data-testid="stAppViewContainer"] {{
+        direction: rtl; text-align: right;
+        font-family: "Segoe UI", Tahoma, Arial, sans-serif;
         color: {WHITE};
     }}
-    .block-container {{ max-width: 1280px; padding-top: 1rem; padding-bottom: 4rem; }}
+    [data-testid="stAppViewContainer"] {{
+        background:
+          radial-gradient(circle at 10% 7%, rgba(6,182,212,.08), transparent 23%),
+          radial-gradient(circle at 88% 8%, rgba(124,58,237,.07), transparent 25%),
+          linear-gradient(180deg, #FBFDFF 0%, {BG} 38%, #F7FAFE 100%);
+    }}
+    [data-testid="stSidebar"], [data-testid="collapsedControl"] {{ display:none !important; }}
+    .block-container {{ max-width: 1500px; padding: 1.4rem 320px 4rem 2rem !important; }}
     p, li, div, label {{ line-height: 1.95; }}
+    p, li {{ font-size: 18px; }}
     code, pre {{ direction:ltr !important; text-align:left !important; }}
 
-    /* Sidebar على اليمين */
-    [data-testid="stSidebar"] {{
-        direction: rtl !important;
-        text-align: right !important;
-        background: linear-gradient(180deg, #090D28 0%, #12183B 100%);
-        border-right: 1px solid rgba(41,231,242,.20) !important;
-        border-left: none !important;
+    /* فهرس ثابت على اليمين */
+    .right-toc {{
+        position:fixed; right:18px; top:64px; width:270px; max-height:calc(100vh - 82px);
+        overflow-y:auto; z-index:999; direction:rtl; text-align:right;
+        background:rgba(255,255,255,.96); backdrop-filter: blur(12px);
+        border:1px solid #D9E5F3; border-radius:22px; padding:18px 14px;
+        box-shadow:0 18px 45px rgba(30,64,175,.10);
     }}
-    [data-testid="stSidebar"] * {{ color:{WHITE}; }}
+    .right-toc::-webkit-scrollbar {{ width:6px; }}
+    .right-toc::-webkit-scrollbar-thumb {{ background:#C7D8EE; border-radius:99px; }}
+    .toc-title {{ color:{BLUE}; font-size:21px; font-weight:950; margin:0 0 .25rem; }}
+    .toc-subtitle {{ color:{MUTED}; font-size:14px; line-height:1.7; margin-bottom:.75rem; }}
+    .toc-nav {{ display:flex; flex-direction:column; gap:.38rem; }}
+    .toc-nav a {{
+        display:block; text-decoration:none !important; color:#233A59 !important; background:#F7FAFE;
+        border:1px solid #E0E9F4; border-right:4px solid transparent; border-radius:12px;
+        padding:.58rem .68rem; font-weight:800; font-size:16px; line-height:1.5; transition:.18s ease;
+    }}
+    .toc-nav a:hover {{ background:#EAF4FF; border-color:#BBD9FA; border-right-color:{BLUE}; transform:translateX(-2px); color:{BLUE} !important; }}
+    .toc-tip {{ margin-top:12px; padding:12px; border-radius:14px; background:linear-gradient(135deg,#EFF8FF,#F4F0FF); color:#415875; font-size:14px; border:1px solid #DDEAF7; }}
 
-    /* Hero */
+    /* Hero مريح للمدرج */
     .hero {{
-        position: relative; overflow:hidden;
-        padding: 2.3rem 2rem 2.1rem;
-        border-radius: 30px;
-        background: linear-gradient(130deg, rgba(41,231,242,.11), rgba(91,140,255,.08) 34%, rgba(155,107,255,.13) 65%, rgba(255,114,199,.10));
-        border: 1px solid rgba(41,231,242,.25);
-        box-shadow: 0 22px 75px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.08);
-        margin-bottom: 1.3rem;
+        position:relative; overflow:hidden; padding:2.1rem 2rem; border-radius:28px;
+        background:linear-gradient(115deg,#FFFFFF 0%,#F0F8FF 48%,#F6F0FF 100%);
+        border:1px solid #D9E7F5; box-shadow:0 18px 55px rgba(37,99,235,.10); margin-bottom:1.35rem;
     }}
-    .hero:before {{
-        content:""; position:absolute; inset:-40%;
-        background: conic-gradient(from 80deg, transparent, rgba(41,231,242,.05), transparent 28%, rgba(155,107,255,.07), transparent 60%, rgba(255,114,199,.05), transparent);
-        animation: heroSpin 18s linear infinite;
-    }}
-    @keyframes heroSpin {{ to {{ transform: rotate(360deg); }} }}
+    .hero:after {{ content:""; position:absolute; left:-80px; top:-90px; width:250px; height:250px; border-radius:50%; background:radial-gradient(circle,rgba(6,182,212,.17),transparent 66%); }}
     .hero-inner {{ position:relative; z-index:2; }}
-    .hero-kicker {{
-        display:inline-flex; gap:.4rem; align-items:center;
-        padding:.38rem .86rem; border-radius:999px;
-        background:rgba(41,231,242,.09); border:1px solid rgba(41,231,242,.36);
-        color:{CYAN}; font-weight:900; font-size:.92rem; margin-bottom:.85rem;
-    }}
-    .hero-title {{
-        font-size:clamp(2rem,4vw,3.25rem); line-height:1.42; font-weight:950; margin:0;
-        background:linear-gradient(90deg,{CYAN},#B7C7FF 35%,#C9AAFF 62%,{PINK});
-        -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    }}
-    .hero-subtitle {{ color:{MUTED}; font-size:1.05rem; margin-top:.7rem; }}
-    .hero-meta {{ display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1rem; }}
-    .pill {{ padding:.38rem .72rem; border-radius:999px; background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.10); font-size:.9rem; }}
+    .hero-kicker {{ display:inline-flex; gap:.45rem; align-items:center; padding:.42rem .9rem; border-radius:999px; background:#E9F7FB; border:1px solid #BFEAF2; color:#087D93; font-weight:900; font-size:16px; margin-bottom:.85rem; }}
+    .hero-title {{ font-size:clamp(2.1rem,3.8vw,3.35rem); line-height:1.42; font-weight:950; margin:0; color:#143D8C; }}
+    .hero-subtitle {{ color:#415C7E; font-size:18px; margin-top:.7rem; }}
+    .hero-meta {{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1rem; }}
+    .pill {{ padding:.45rem .78rem; border-radius:999px; background:#FFFFFF; border:1px solid #D9E5F3; font-size:15px; color:#334D6E; font-weight:700; box-shadow:0 5px 15px rgba(15,23,42,.04); }}
 
     /* عناوين الأقسام */
-    .section-heading {{
-        display:flex; align-items:center; gap:.7rem; margin:.2rem 0 1rem;
-        padding-bottom:.65rem; border-bottom:1px solid rgba(255,255,255,.085);
-    }}
-    .section-icon {{
-        width:48px; height:48px; display:grid; place-items:center; border-radius:15px;
-        background:linear-gradient(135deg, rgba(41,231,242,.17), rgba(155,107,255,.18));
-        border:1px solid rgba(41,231,242,.24); font-size:1.35rem;
-        box-shadow:0 8px 24px rgba(41,231,242,.06);
-    }}
-    .section-title {{ color:{PINK}; font-size:1.72rem; font-weight:950; }}
-    .section-note {{ color:{MUTED}; font-size:.93rem; }}
+    .section-heading {{ display:flex; align-items:center; gap:.8rem; margin:.35rem 0 1rem; padding-bottom:.75rem; border-bottom:2px solid #E6EEF7; }}
+    .section-icon {{ width:52px; height:52px; display:grid; place-items:center; border-radius:16px; background:linear-gradient(135deg,#E6F7FB,#EEE9FF); border:1px solid #D4E5F2; font-size:1.45rem; box-shadow:0 8px 20px rgba(37,99,235,.06); }}
+    .section-title {{ color:#174AA6; font-size:30px; font-weight:950; }}
+    .section-note {{ color:{MUTED}; font-size:16px; }}
 
     /* بطاقات */
-    .ai-card {{
-        height:100%; padding:1.2rem 1.15rem; border-radius:20px;
-        background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
-        border:1px solid rgba(255,255,255,.095);
-        box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 14px 32px rgba(0,0,0,.18);
-        transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
-    }}
-    .ai-card:hover {{ transform:translateY(-4px); border-color:rgba(41,231,242,.30); box-shadow:0 18px 42px rgba(0,0,0,.26); }}
-    .ai-card.cyan {{ border-top:3px solid {CYAN}; }}
-    .ai-card.blue {{ border-top:3px solid {BLUE}; }}
-    .ai-card.purple {{ border-top:3px solid {PURPLE}; }}
-    .ai-card.pink {{ border-top:3px solid {PINK}; }}
-    .ai-card.yellow {{ border-top:3px solid {YELLOW}; }}
-    .ai-card.green {{ border-top:3px solid {GREEN}; }}
-    .card-label {{ font-size:.82rem; font-weight:850; color:{MUTED}; margin-bottom:.18rem; }}
-    .card-title {{ font-size:1.2rem; font-weight:950; color:{CYAN}; margin-bottom:.42rem; }}
-    .card-title.blue {{ color:#9BB7FF; }} .card-title.purple {{ color:#C0A9FF; }}
-    .card-title.pink {{ color:#FF9DD5; }} .card-title.yellow {{ color:{YELLOW}; }}
-    .card-title.green {{ color:{GREEN}; }}
-    .card-text {{ color:{MUTED}; font-size:.97rem; }}
+    .ai-card {{ height:100%; padding:1.25rem 1.2rem; border-radius:20px; background:#FFFFFF; border:1px solid #DFE9F4; box-shadow:0 12px 28px rgba(30,64,175,.07); transition:transform .22s ease, box-shadow .22s ease; }}
+    .ai-card:hover {{ transform:translateY(-3px); box-shadow:0 17px 35px rgba(30,64,175,.12); }}
+    .ai-card.cyan {{ border-top:4px solid {CYAN}; }} .ai-card.blue {{ border-top:4px solid {BLUE}; }} .ai-card.purple {{ border-top:4px solid {PURPLE}; }}
+    .ai-card.pink {{ border-top:4px solid {PINK}; }} .ai-card.yellow {{ border-top:4px solid #F59E0B; }} .ai-card.green {{ border-top:4px solid {GREEN}; }}
+    .card-label {{ font-size:14px; font-weight:850; color:#718198; margin-bottom:.2rem; }}
+    .card-title {{ font-size:21px; font-weight:950; color:#087D93; margin-bottom:.45rem; }}
+    .card-title.blue {{ color:{BLUE}; }} .card-title.purple {{ color:{PURPLE}; }} .card-title.pink {{ color:{PINK}; }} .card-title.yellow {{ color:#B76700; }} .card-title.green {{ color:{GREEN}; }}
+    .card-text {{ color:#40546D; font-size:17px; }}
 
     /* Callouts */
-    .callout {{ padding:1rem 1.1rem; border-radius:17px; margin:.8rem 0 1rem; background:rgba(255,255,255,.043); border-right:5px solid {CYAN}; }}
-    .callout.question {{ border-right-color:{YELLOW}; background:rgba(255,209,102,.052); }}
-    .callout.warning {{ border-right-color:{PINK}; background:rgba(255,114,199,.052); }}
-    .callout.success {{ border-right-color:{GREEN}; background:rgba(88,230,169,.052); }}
-    .callout-title {{ color:{YELLOW}; font-weight:950; margin-bottom:.2rem; }}
-    .callout-text {{ color:{WHITE}; }}
+    .callout {{ padding:1.05rem 1.15rem; border-radius:17px; margin:.85rem 0 1rem; background:#F1FAFC; border-right:5px solid {CYAN}; border-top:1px solid #DCEEF2; border-bottom:1px solid #DCEEF2; }}
+    .callout.question {{ border-right-color:#F59E0B; background:#FFF9E9; border-color:#F7E7B4; }}
+    .callout.warning {{ border-right-color:{PINK}; background:#FFF2F7; border-color:#F4DCE8; }}
+    .callout.success {{ border-right-color:{GREEN}; background:#EEFBF6; border-color:#D3F0E4; }}
+    .callout-title {{ color:#9A5D00; font-weight:950; font-size:18px; margin-bottom:.22rem; }}
+    .callout-text {{ color:#263E5A; font-size:18px; }}
 
-    /* جدول جذاب */
-    .fancy-table-wrap {{
-        overflow-x:auto; border-radius:20px; margin:1rem 0 1.2rem;
-        border:1px solid rgba(91,140,255,.22);
-        box-shadow:0 18px 38px rgba(0,0,0,.22);
-        background:rgba(255,255,255,.028);
-    }}
+    /* جداول للعرض في المدرج */
+    .fancy-table-wrap {{ overflow-x:auto; border-radius:18px; margin:1rem 0 1.25rem; border:1px solid #D8E5F2; box-shadow:0 12px 28px rgba(30,64,175,.07); background:#FFFFFF; }}
     table.fancy-table {{ width:100%; border-collapse:separate; border-spacing:0; min-width:720px; direction:rtl; }}
-    .fancy-table thead th {{
-        padding:1rem .9rem; color:white; font-weight:950; text-align:right;
-        background:linear-gradient(100deg, rgba(41,231,242,.30), rgba(91,140,255,.24), rgba(155,107,255,.30));
-        border-bottom:1px solid rgba(255,255,255,.13);
-    }}
-    .fancy-table tbody td {{ padding:.88rem .9rem; color:{MUTED}; border-bottom:1px solid rgba(255,255,255,.065); background:rgba(255,255,255,.024); }}
-    .fancy-table tbody tr:nth-child(even) td {{ background:rgba(255,255,255,.042); }}
-    .fancy-table tbody tr:hover td {{ background:rgba(41,231,242,.075); color:{WHITE}; }}
+    .fancy-table thead th {{ padding:1rem .95rem; color:white; font-weight:950; font-size:18px; text-align:right; background:linear-gradient(100deg,#1D4ED8,#2563EB 45%,#6D4DDC); border-bottom:1px solid rgba(255,255,255,.22); }}
+    .fancy-table tbody td {{ padding:.95rem .95rem; color:#2E435E; font-size:17px; border-bottom:1px solid #E7EEF6; background:#FFFFFF; }}
+    .fancy-table tbody tr:nth-child(even) td {{ background:#F7FAFE; }}
+    .fancy-table tbody tr:hover td {{ background:#ECF6FF; color:#183A66; }}
     .fancy-table tbody tr:last-child td {{ border-bottom:none; }}
-    .table-badge {{ display:inline-block; padding:.2rem .55rem; border-radius:999px; background:rgba(41,231,242,.10); color:{CYAN}; border:1px solid rgba(41,231,242,.22); font-weight:850; font-size:.82rem; }}
+    .table-badge {{ display:inline-block; padding:.28rem .62rem; border-radius:999px; background:#E7F7FB; color:#087D93; border:1px solid #BFE6EE; font-weight:900; font-size:15px; }}
 
     /* Flow حديث */
-    .flow {{ display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.58rem; margin:1rem 0; }}
-    .flow-node {{
-        position:relative; padding:.7rem 1rem; border-radius:14px; font-weight:900; color:{WHITE};
-        background:linear-gradient(135deg, rgba(41,231,242,.09), rgba(155,107,255,.09));
-        border:1px solid rgba(41,231,242,.24); box-shadow:0 10px 24px rgba(0,0,0,.14);
-        animation:softPulse 3.4s ease-in-out infinite;
-    }}
-    .flow-node:nth-child(3) {{ animation-delay:.35s; }} .flow-node:nth-child(5) {{ animation-delay:.7s; }} .flow-node:nth-child(7) {{ animation-delay:1.05s; }}
-    @keyframes softPulse {{ 0%,100%{{box-shadow:0 10px 24px rgba(0,0,0,.14)}} 50%{{box-shadow:0 10px 28px rgba(41,231,242,.12)}} }}
-    .flow-arrow {{ color:{PINK}; font-size:1.3rem; font-weight:950; }}
+    .flow {{ display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.64rem; margin:1rem 0; }}
+    .flow-node {{ padding:.75rem 1.05rem; border-radius:14px; font-weight:900; font-size:17px; color:#1E3A5F; background:linear-gradient(135deg,#F3FAFF,#F6F2FF); border:1px solid #D5E4F3; box-shadow:0 8px 20px rgba(30,64,175,.06); }}
+    .flow-arrow {{ color:{PURPLE}; font-size:1.45rem; font-weight:950; }}
 
-    /* Mini chips */
-    .mini-grid {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.72rem; margin:.85rem 0; }}
-    .mini-chip {{ padding:.9rem .8rem; border-radius:15px; text-align:center; background:rgba(255,255,255,.043); border:1px solid rgba(255,255,255,.085); color:{WHITE}; font-weight:850; transition:.2s ease; }}
-    .mini-chip:hover {{ transform:translateY(-3px); border-color:rgba(155,107,255,.38); background:rgba(155,107,255,.07); }}
+    .mini-grid {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:.72rem; margin:.9rem 0; }}
+    .mini-chip {{ padding:1rem .85rem; border-radius:15px; text-align:center; background:#FFFFFF; border:1px solid #DCE6F1; color:#28445F; font-weight:850; font-size:16px; box-shadow:0 7px 18px rgba(30,64,175,.05); }}
+    .mini-chip:hover {{ transform:translateY(-2px); border-color:#C9BDF5; background:#FAF8FF; }}
 
-    /* Formula */
-    .formula-box {{ text-align:center; direction:ltr; font-size:1.24rem; font-weight:950; padding:1rem; border-radius:17px; background:linear-gradient(90deg,rgba(41,231,242,.08),rgba(91,140,255,.09),rgba(155,107,255,.11),rgba(255,114,199,.07)); border:1px solid rgba(155,107,255,.25); color:{YELLOW}; margin:.9rem 0; }}
-
-    /* Sidebar TOC */
-    .toc-title {{ color:{CYAN}; font-size:1.2rem; font-weight:950; margin:.2rem 0 .35rem; }}
-    .toc-subtitle {{ color:{MUTED}; font-size:.88rem; margin-bottom:.8rem; }}
-    .toc-nav {{ display:flex; flex-direction:column; gap:.38rem; margin:.4rem 0 1rem; }}
-    .toc-nav a {{ display:block; text-decoration:none !important; color:{WHITE} !important; background:rgba(255,255,255,.043); border:1px solid rgba(255,255,255,.08); border-right:3px solid transparent; border-radius:12px; padding:.48rem .62rem; font-weight:800; line-height:1.55; transition:.18s ease; }}
-    .toc-nav a:hover {{ background:rgba(41,231,242,.09); border-color:rgba(41,231,242,.32); border-right-color:{CYAN}; transform:translateX(-2px); }}
-
+    .formula-box {{ text-align:center; direction:ltr; font-size:22px; font-weight:950; padding:1rem; border-radius:17px; background:linear-gradient(90deg,#EAF8FC,#EEF4FF,#F4EEFF); border:1px solid #D3E3F3; color:#5B35B5; margin:.95rem 0; }}
     .scroll-anchor {{ scroll-margin-top:1.2rem; height:1px; width:1px; }}
-    .section-separator {{ height:1px; margin:2.2rem 0 1.65rem; background:linear-gradient(90deg,transparent,rgba(41,231,242,.34),rgba(155,107,255,.34),transparent); }}
-    .back-top {{ text-align:left; margin:.7rem 0 0; }} .back-top a {{ color:{CYAN} !important; text-decoration:none !important; font-size:.88rem; font-weight:850; }}
+    .section-separator {{ height:1px; margin:2.3rem 0 1.7rem; background:linear-gradient(90deg,transparent,#D5E4F2,#DCCEF5,transparent); }}
 
-    /* Streamlit widgets */
-    div.stButton > button {{ width:100%; border-radius:14px; border:1px solid rgba(41,231,242,.35); background:linear-gradient(90deg,rgba(41,231,242,.20),rgba(155,107,255,.24)); color:white; font-weight:950; padding:.65rem 1rem; transition:.18s ease; }}
-    div.stButton > button:hover {{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(41,231,242,.14); }}
-    [data-testid="stExpander"] {{ background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.08); border-radius:14px; }}
-    [data-testid="stMetric"] {{ background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:.9rem; }}
+    div.stButton > button {{ width:100%; border-radius:14px; border:1px solid #BFD3EE; background:linear-gradient(90deg,#EAF6FF,#F3EEFF); color:#194688; font-weight:950; font-size:17px; padding:.7rem 1rem; }}
+    div.stButton > button:hover {{ border-color:#8DB8E9; box-shadow:0 8px 22px rgba(37,99,235,.10); }}
+    [data-testid="stExpander"] {{ background:#FFFFFF; border:1px solid #DDE7F1; border-radius:14px; box-shadow:0 7px 18px rgba(30,64,175,.04); }}
+    [data-testid="stMetric"] {{ background:#FFFFFF; border:1px solid #DDE7F1; border-radius:16px; padding:.9rem; }}
+    h1,h2,h3,h4 {{ color:#174AA6; }}
+    .footer {{ margin-top:2rem; padding:1.1rem; text-align:center; color:{MUTED}; border-top:1px solid #DDE7F1; font-size:15px; }}
 
-    .footer {{ margin-top:2rem; padding:1.1rem; text-align:center; color:{MUTED}; border-top:1px solid rgba(255,255,255,.08); font-size:.9rem; }}
-
+    @media(max-width:1050px) {{
+      .right-toc {{ display:none; }}
+      .block-container {{ padding:1rem 1rem 4rem !important; max-width:100%; }}
+    }}
     @media(max-width:760px) {{
-        [data-testid="stAppViewContainer"] {{ flex-direction:row !important; }}
-        .hero {{ padding:1.45rem 1rem; border-radius:22px; }}
-        .hero-title {{ font-size:2rem; }}
-        .section-title {{ font-size:1.38rem; }}
+      .hero {{ padding:1.45rem 1rem; border-radius:22px; }} .hero-title {{ font-size:2rem; }}
+      .section-title {{ font-size:25px; }} p,li {{ font-size:17px; }}
     }}
     </style>
     """,
@@ -260,22 +206,22 @@ def animated_ai_ml_dl():
     components.html(
         f"""
         <html dir="rtl"><head><meta charset="utf-8"><style>
-        body{{margin:0;background:transparent;font-family:Tahoma,Arial,sans-serif;color:{WHITE};overflow:hidden}}
-        .wrap{{height:470px;display:flex;align-items:center;justify-content:center;position:relative}}
-        .halo{{position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(41,231,242,.10),transparent 66%);filter:blur(8px);animation:glow 3.6s ease-in-out infinite}}
+        body{{margin:0;background:transparent;font-family:Tahoma,Arial,sans-serif;color:#14213D;overflow:hidden}}
+        .wrap{{height:455px;display:flex;align-items:center;justify-content:center;position:relative;background:linear-gradient(135deg,#FFFFFF,#F6FAFF);border:1px solid #DDE8F3;border-radius:22px;}}
+        .halo{{position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(6,182,212,.10),transparent 66%);filter:blur(8px);animation:glow 3.6s ease-in-out infinite}}
         @keyframes glow{{0%,100%{{transform:scale(.98);opacity:.65}}50%{{transform:scale(1.06);opacity:1}}}}
-        .ring{{position:absolute;border-radius:50%;display:flex;align-items:flex-start;justify-content:center;box-shadow:0 0 38px rgba(0,0,0,.28) inset,0 0 34px rgba(41,231,242,.06);transition:.25s ease;}}
+        .ring{{position:absolute;border-radius:50%;display:flex;align-items:flex-start;justify-content:center;box-shadow:0 0 28px rgba(30,64,175,.08) inset,0 10px 30px rgba(30,64,175,.05);transition:.25s ease;}}
         .ring:hover{{transform:scale(1.03)}}
-        .ai{{width:380px;height:380px;border:2px solid rgba(41,231,242,.65);background:radial-gradient(circle at 30% 25%,rgba(41,231,242,.20),rgba(41,231,242,.06) 40%,rgba(255,255,255,.01) 70%);animation:float1 5s ease-in-out infinite}}
-        .ml{{width:270px;height:270px;border:2px solid rgba(155,107,255,.75);background:radial-gradient(circle at 35% 28%,rgba(155,107,255,.22),rgba(155,107,255,.07) 44%,rgba(255,255,255,.01) 72%);top:100px;animation:float2 5s ease-in-out infinite}}
-        .dl{{width:160px;height:160px;border:2px solid rgba(255,114,199,.82);background:radial-gradient(circle at 32% 25%,rgba(255,114,199,.25),rgba(255,114,199,.08) 46%,rgba(255,255,255,.01) 72%);top:155px;animation:float3 4.5s ease-in-out infinite}}
+        .ai{{width:380px;height:380px;border:2px solid rgba(6,182,212,.65);background:radial-gradient(circle at 30% 25%,rgba(6,182,212,.18),rgba(6,182,212,.06) 45%,rgba(255,255,255,.65) 76%);animation:float1 5s ease-in-out infinite}}
+        .ml{{width:270px;height:270px;border:2px solid rgba(124,58,237,.62);background:radial-gradient(circle at 35% 28%,rgba(124,58,237,.16),rgba(124,58,237,.05) 46%,rgba(255,255,255,.72) 76%);top:100px;animation:float2 5s ease-in-out infinite}}
+        .dl{{width:160px;height:160px;border:2px solid rgba(219,39,119,.60);background:radial-gradient(circle at 32% 25%,rgba(219,39,119,.16),rgba(219,39,119,.05) 48%,rgba(255,255,255,.75) 76%);top:155px;animation:float3 4.5s ease-in-out infinite}}
         @keyframes float1{{0%,100%{{transform:translateY(0)}}50%{{transform:translateY(-5px)}}}}
         @keyframes float2{{0%,100%{{transform:translateY(0)}}50%{{transform:translateY(5px)}}}}
         @keyframes float3{{0%,100%{{transform:translateY(0)}}50%{{transform:translateY(-4px)}}}}
         .label{{margin-top:26px;text-align:center;font-weight:900;text-shadow:0 0 16px rgba(255,255,255,.12)}}
-        .ai .label{{color:{CYAN};font-size:24px}} .ml .label{{color:#C5B2FF;font-size:22px}} .dl .label{{color:#FF9DD5;font-size:20px;margin-top:48px}}
-        .small{{display:block;color:{MUTED};font-size:12px;font-weight:700;margin-top:4px}}
-        .hint{{position:absolute;bottom:8px;color:{MUTED};font-size:13px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:12px}}
+        .ai .label{{color:#087D93;font-size:25px}} .ml .label{{color:#6336C6;font-size:23px}} .dl .label{{color:#B51E67;font-size:21px;margin-top:48px}}
+        .small{{display:block;color:#5B6E84;font-size:14px;font-weight:700;margin-top:4px}}
+        .hint{{position:absolute;bottom:10px;color:#53667D;font-size:14px;background:#F7FAFE;border:1px solid #DDE7F1;padding:8px 12px;border-radius:12px}}
         </style></head><body>
         <div class="wrap">
           <div class="halo"></div>
@@ -317,7 +263,7 @@ def neural_network_3d():
             for b in layer_nodes[li+1]:
                 fig.add_trace(go.Scatter3d(
                     x=[a[0], b[0]], y=[a[1], b[1]], z=[a[2], b[2]],
-                    mode="lines", line=dict(color="rgba(180,195,255,.16)", width=2),
+                    mode="lines", line=dict(color="rgba(84,108,150,.22)", width=2),
                     hoverinfo="skip", showlegend=False
                 ))
     # nodes by layer
@@ -327,12 +273,12 @@ def neural_network_3d():
             mode="markers+text",
             text=[layer_names[li] if i == 0 else "" for i in range(len(nodes))],
             textposition="top center",
-            marker=dict(size=8, color=layer_colors[li], opacity=.95, line=dict(color="white", width=.4)),
+            marker=dict(size=9, color=layer_colors[li], opacity=.96, line=dict(color="#FFFFFF", width=.7)),
             hovertemplate=f"{layer_names[li]}<extra></extra>",
             name=layer_names[li]
         ))
     fig.update_layout(
-        height=470,
+        height=430,
         margin=dict(l=0,r=0,t=25,b=0),
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
@@ -368,30 +314,31 @@ st.markdown(
 )
 
 # ==============================
-# الفهرس
+# الفهرس الثابت على اليمين
 # ==============================
-with st.sidebar:
-    st.markdown(
-        """
-        <div class="toc-title">🧭 فهرس المحاضرة</div>
-        <div class="toc-subtitle">القراءة متتابعة من الأعلى إلى الأسفل، ويمكن الانتقال مباشرة إلى أي جزء.</div>
-        <div class="toc-nav">
-          <a href="#goals" target="_self">🎯 أهداف المحاضرة</a>
-          <a href="#concepts" target="_self">🧠 AI وML وDL</a>
-          <a href="#deep-visual" target="_self">🧬 كيف نفهم كلمة Deep؟</a>
-          <a href="#comparison" target="_self">⚖️ مقارنة ML وDL</a>
-          <a href="#growth" target="_self">⚡ لماذا انتشر DL؟</a>
-          <a href="#hr-apps" target="_self">👥 تطبيقات HR</a>
-          <a href="#attrition" target="_self">📊 مثال Attrition</a>
-          <a href="#ethics" target="_self">🛡️ القيود والأخلاقيات</a>
-          <a href="#activity" target="_self">🧩 نشاط</a>
-          <a href="#quiz" target="_self">🏆 اختبار قصير</a>
-          <a href="#references" target="_self">📚 المراجع</a>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    st.markdown(card("فكرة الواجهة", "المعلومة تظهر داخل تصميم بصري؛ الحركة تستخدم فقط عندما تضيف معنى، والـ3D عندما يساعد على فهم البنية.", "green", "Learning by seeing"), unsafe_allow_html=True)
+st.markdown(
+    """
+    <aside class="right-toc">
+      <div class="toc-title">🧭 فهرس المحاضرة</div>
+      <div class="toc-subtitle">اقرأ من الأعلى إلى الأسفل، أو انتقل مباشرة إلى أي جزء.</div>
+      <div class="toc-nav">
+        <a href="#goals">🎯 أهداف المحاضرة</a>
+        <a href="#concepts">🧠 AI وML وDL</a>
+        <a href="#deep-visual">🧬 ماذا تعني Deep؟</a>
+        <a href="#comparison">⚖️ مقارنة ML وDL</a>
+        <a href="#growth">⚡ لماذا انتشر DL؟</a>
+        <a href="#hr-apps">👥 تطبيقات HR</a>
+        <a href="#attrition">📊 مثال Attrition</a>
+        <a href="#ethics">🛡️ القيود والأخلاقيات</a>
+        <a href="#activity">🧩 نشاط</a>
+        <a href="#quiz">🏆 اختبار قصير</a>
+        <a href="#references">📚 المراجع</a>
+      </div>
+      <div class="toc-tip">💡 استخدم الفهرس أثناء العرض، والقراءة تظل متتابعة في الصفحة نفسها.</div>
+    </aside>
+    """,
+    unsafe_allow_html=True,
+)
 
 # ==============================
 # 1) الأهداف
